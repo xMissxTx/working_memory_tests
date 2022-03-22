@@ -70,13 +70,14 @@
   stimuli_duration = 1000 // number of miliseconds to display each digit
   recall_duration = null // number of miliseconds to allow recall. If null, there is no time limit.
   file_name = null // file name for data file. if null, a default name consisting of the participant ID and a unique number is chosen.
-  local = true // save the data file locally.
+  // local = true // save the data file locally.
               // If this test is being run online (e.g., on MTurk), true will cause the file to be downloaded to the participant's computer.
               // If this test is on a server, and you wish to save the data file to that server, change this to false.
               // If changed to false, ensure that the php file (its in the directory!) and the empty "data" folder has also been appropriately uploaded to the server.
               // Incase of problems, feel free to contact me :)
 
 //----------------------------------------------------------------------
+
 
   possibleNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]  //possible digits participants can get
 
@@ -219,18 +220,20 @@ var conclusion = {
     repetitions: 3
   }
 
-function saveData(filename, filedata){
-      $.ajax({
-            type:'post',
-            cache: false,
-            url: 'save_data.php', // this is the path to the above PHP script
-            data: {filename: filename, filedata: filedata}
-      });
+// function saveData(filename, filedata){
+    //  $.ajax({
+          //  type:'post',
+          //  cache: false,
+          //  url: 'save_data.php', // this is the path to the above PHP script
+          //  data: {filename: filename, filedata: filedata}
+  //    });
 };
 
 var IDsub = Date.now()
 
-var dataLog = {
+var correct_trials = jsPsych.data.get().accuracy.count
+
+// var dataLog = {
  type: 'html-keyboard-response',
  stimulus: " ",
  trial_duration: 100,
